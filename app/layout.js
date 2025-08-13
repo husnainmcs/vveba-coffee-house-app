@@ -1,5 +1,7 @@
 
+import Navbar from "@/components/navbar";
 import "./globals.css";
+import Footer from "@/components/footer";
 
 export const metadata = {
  title: 'Coffee House',
@@ -20,8 +22,15 @@ export default function RootLayout({ children }) {
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
      />
-    </head>
-      <body>{children}</body>
+      </head>
+      
+      <body>
+        <div className="container">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
+      </body>
    </html>
   );
 }

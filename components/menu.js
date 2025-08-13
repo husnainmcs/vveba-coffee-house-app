@@ -1,6 +1,12 @@
-import React from 'react'
-
 export default function Menu() {
+
+  const menuImg = [
+   '/images/image4.jpg',
+   '/images/image6.jpg',
+   '/images/image7.jpg',
+   '/images/image5.jpg',
+  ];
+
   return (
    <section className="menu">
     <div className="menu-left">
@@ -16,19 +22,14 @@ export default function Menu() {
      </button>
     </div>
     <div className="menu-right">
-     <div className="menu-right-images">
-      <div className="menu-img-wrapper">
-       <img src="/images/image4.jpg" />
-      </div>
-      <div className="menu-img-wrapper">
-       <img src="/images/image5.jpg" />
-      </div>
-      <div className="menu-img-wrapper">
-       <img src="/images/image6.jpg" />
-      </div>
-      <div className="menu-img-wrapper">
-       <img src="/images/image7.jpg" />
-      </div>
+        <div className="menu-right-images">
+          {
+            menuImg.map((img, idx) => (
+               <div key={idx} className="menu-img-wrapper">
+                <img src={img} />
+               </div>
+              ))
+          }      
      </div>
     </div>
    </section>
