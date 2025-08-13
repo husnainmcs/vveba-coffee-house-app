@@ -1,4 +1,8 @@
+'use client'
+import { useRouter } from "next/navigation";
+
 export default function Menu() {
+ const router = useRouter();
 
   const menuImg = [
    '/images/image4.jpg',
@@ -7,8 +11,12 @@ export default function Menu() {
    '/images/image5.jpg',
   ];
 
+  const handleClick = () => {
+   router.push('/shop');
+  };
+
   return (
-   <section className="menu">
+   <section className="menu" id="menu">
     <div className="menu-left">
      <h3 className="main-heading">Discover</h3>
      <h1>Our Menu</h1>
@@ -17,19 +25,17 @@ export default function Menu() {
       accusantium vitae fugiat perferendis. Inventore rem debitis consequatur
       dolorum voluptatum. Repudiandae?
      </p>
-     <button type="button" className="menu-btn">
+     <button onClick={handleClick} type="button" className="menu-btn">
       View Full Menu
      </button>
     </div>
     <div className="menu-right">
-        <div className="menu-right-images">
-          {
-            menuImg.map((img, idx) => (
-               <div key={idx} className="menu-img-wrapper">
-                <img src={img} />
-               </div>
-              ))
-          }      
+     <div className="menu-right-images">
+      {menuImg.map((img, idx) => (
+       <div key={idx} className="menu-img-wrapper">
+        <img src={img} />
+       </div>
+      ))}
      </div>
     </div>
    </section>

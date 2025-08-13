@@ -4,13 +4,13 @@ import Link from 'next/link';
 
 export default function Navbar() {
  const navItems = [
-  {label: 'Home', link: '#'},
-  {label: 'Menu', link: '#'},
+  {label: 'Home', link: '/'},
+  {label: 'Menu', link: '#menu'},
   {label: 'Blog', link: '#'},
   {label: 'About', link: '#'},
-  {label: 'Shop', link: '#'},
+  {label: 'Shop', link: '/shop'},
   {label: 'Contact', link: '#'},
-  {label: <i className="fa-solid fa-cart-shopping"></i>, link: '#'},
+  {label: <i className="fa-solid fa-cart-shopping"></i>, link: '/cart'},
  ];
 
  useEffect(() => {
