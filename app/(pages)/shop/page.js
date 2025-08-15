@@ -1,5 +1,5 @@
 'use client';
-
+import { useCart } from '@/context/cartContext';
 import {useEffect, useState} from 'react';
 
 export default function Shop() {
@@ -8,6 +8,8 @@ export default function Shop() {
  const [currentPage, setCurrentPage] = useState(1);
  const productsPerPage = 6;
  const [cart, setCart] = useState([]);
+
+ const {addToCart} = useCart();
 
  // Load cart from localStorage when page loads
  useEffect(() => {
@@ -46,19 +48,6 @@ export default function Shop() {
  );
  const totalPages = Math.ceil(products.length / productsPerPage);
 
- const handleAddToCart = (product) => {
-  const alreadyInCart = cart.find((item) => item.id === product.id);
-  if (alreadyInCart) {
-   setCart(
-    cart.map((item) =>
-     item.id === product.id ? {...item, quantity: item.quantity + 1} : item
-    )
-   );
-  } else {
-   setCart([...cart, {...product, quantity: 1}]);
-  }
- };
-
  if (loading) {
   return (
    <div className="page-shop">
@@ -88,10 +77,7 @@ export default function Shop() {
        <p className="product-description">{product.description}</p>
        <div className="product-rating">⭐ {product.rating.rate}</div>
 
-       <button
-        className="add-to-cart-btn"
-        onClick={() => handleAddToCart(product)}
-       >
+       <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
         Add to Cart
        </button>
       </div>

@@ -1,8 +1,10 @@
 'use client';
+import {useCart} from '@/context/cartContext';
 import {useEffect} from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
+ const {cartItems} = useCart();
  const navItems = [
   {label: 'Home', link: '/'},
   {label: 'Menu', link: '#menu'},
@@ -24,6 +26,13 @@ export default function Navbar() {
   window.addEventListener('scroll', handleScroll);
   return () => window.removeEventListener('scroll', handleScroll);
  }, []);
+ // 🔹 Update CSS variable for cart count
+ useEffect(() => {
+  const nav = document.querySelector('.navigation a:last-child');
+  if (nav) {
+   nav.style.setProperty('--cart-count', `"${cartItems.length}"`);
+  }
+ }, [cartItems]);
 
  return (
   <nav className="navbar transition-all duration-300">
@@ -44,3 +53,18 @@ export default function Navbar() {
   </nav>
  );
 }
+
+
+/*
+
+{
+   label: (
+    <div style={{position: 'relative'}}>
+     <i className="fa-solid fa-cart-shopping"></i>
+     {cartItems.length > 0 && <span>{cartItems.length}</span>}
+    </div>
+   ),
+   link: '/cart',
+  },
+
+*/
